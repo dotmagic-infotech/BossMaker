@@ -1,6 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Header from "../HeaderAndSidebar/Header";
 import Sidebar from "../HeaderAndSidebar/Sidebar";
+import Divider from '@mui/material/Divider';
+import Card from "@mui/material/Card";
+
 
 const MainLayout = ({ children }) => {
     return (
@@ -9,20 +12,10 @@ const MainLayout = ({ children }) => {
 
             <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                 <Header />
-                <hr />
-                <main
-                    style={{
-                        flexGrow: 1,
-                        overflow: 'auto',
-                        padding: '1rem',
-                        backgroundColor: '#ffffff',
-                        borderRadius: '8px',
-                        boxShadow: '0 9px 20px #2e235e12',
-                        margin: '1rem',
-                    }}
-                >
+                <Divider />
+                <Card sx={{ flexGrow: 1, overflow: 'auto', borderRadius: '8px', margin: '1rem' }}>
                     <Outlet />
-                </main>
+                </Card>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import ProtectedRoutes from './routes/ProtectedRoutes';
 import Dashboard from './pages/Dashboard';
 import AccessDenied from './pages/AccessDenied';
 import './App.css'
+import UserProfile from './pages/UserProfile/UserProfile';
 
 function App() {
 
@@ -22,8 +23,10 @@ function App() {
           <Route element={<ProtectedRoutes allowedRoles={['course_participant']} />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
-
           
+          <Route path='/profile' element={<UserProfile />}/>
+
+      
           {/* AccessDenied */}
           <Route path="*" element={<AccessDenied />} />
         </Route>

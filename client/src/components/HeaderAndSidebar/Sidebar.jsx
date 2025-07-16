@@ -1,23 +1,25 @@
 // React Imports
 import { useState } from 'react';
 
-// Chakra UI
-import { Button } from "@chakra-ui/react"
-
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHome, faGear, faAddressCard, faCircleLeft, faCircleRight, } from '@fortawesome/free-solid-svg-icons';
+
+import GridViewIcon from '@mui/icons-material/GridView';
+import PeopleIcon from '@mui/icons-material/People';
 
 // Custom Component
 import { useAuth } from '../../context/AuthContext';
 
 // CSS
 import "./SidebarHeader.css"
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-  
+
   // Hooks
   const { role } = useAuth();
+  const navigate = useNavigate();
 
   // State
   const [collapsed, setCollapsed] = useState(false);
@@ -29,24 +31,24 @@ const Sidebar = () => {
           <span className="logo" style={{ fontSize: "18px", fontWeight: "500", transition: "opacity 0.3s ease", width: "100%", textAlign: "center" }}>
             BOSS MAKER
           </span>
-          <Button className='sidebar-switch' colorPalette="teal" variant="solid"
+          <button className='sidebar-switch'
             onClick={() => setCollapsed(!collapsed)}
           >
             <FontAwesomeIcon icon={collapsed ? faCircleRight : faCircleLeft} style={{ margin: '0px 0.3rem' }} />
-          </Button>
+          </button>
         </div>
         <ul className="menu">
           {role === 'super_admin' && (
             <>
-              <li>
-                <FontAwesomeIcon icon={faHome} style={{ margin: '0px 0.3rem' }} />
+              <li onClick={() => navigate("/dashboard")}>
+                <GridViewIcon />
                 <span className="text">DashBoard</span>
               </li>
-              <li>
-                <FontAwesomeIcon icon={faAddressCard} style={{ margin: '0px 0.3rem' }} />
-                <span className="text">About</span>
+              <li onClick={() => navigate("/role")}>
+                <PeopleIcon />
+                <span className="text">Role</span>
               </li>
-              <li>
+              <li onClick={() => navigate("/dashboard")}>
                 <FontAwesomeIcon icon={faUser} style={{ margin: '0px 0.3rem' }} />
                 <span className="text">Table of Content</span>
               </li>

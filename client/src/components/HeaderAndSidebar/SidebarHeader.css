@@ -69,6 +69,12 @@
 .sidebar-switch {
     background-color: #cbcbcb !important;
     border-radius: 50% !important;
-    width: 1.5em;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
     transition: all 0.5s;
 }
