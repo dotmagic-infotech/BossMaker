@@ -1,0 +1,74 @@
+/* Sidebar base style */
+.sidebar {
+    --sidebar-size: 16rem;
+    --sidebar-size-collapsed: 3.5rem;
+
+    width: var(--sidebar-size);
+    background-color: #844;
+    border-radius: 0px 20px 20px 0px;
+    color: white;
+    height: 100vh;
+    transition: width 0.5s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+    width: var(--sidebar-size-collapsed);
+}
+
+/* Sidebar menu list */
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+/* Menu items */
+.sidebar .menu li {
+    background: rgba(255, 255, 255, 0.25);
+    list-style: none;
+    padding: 0.5em;
+    margin: 0.5em 0 0.5em 0.5em;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Last menu item sticky to bottom */
+.sidebar .menu li:last-child {
+    position: absolute;
+    bottom: 0;
+}
+
+/* Menu text */
+.sidebar .menu .text {
+    opacity: 1;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, margin-left 0.3s ease;
+    margin-left: 0.5em;
+    padding-left: 0.25em;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed .menu .text {
+    opacity: 0;
+    margin-left: -100%;
+    pointer-events: none;
+}
+
+.sidebar.collapsed .logo {
+    opacity: 0;
+    display: none;
+}
+
+.sidebar-switch {
+    background-color: #cbcbcb !important;
+    border-radius: 50% !important;
+    width: 1.5em;
+    transition: all 0.5s;
+}
