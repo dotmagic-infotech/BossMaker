@@ -1,21 +1,16 @@
 // React Imports
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHome, faGear, faAddressCard, faCircleLeft, faCircleRight, } from '@fortawesome/free-solid-svg-icons';
-
 import GridViewIcon from '@mui/icons-material/GridView';
 import PeopleIcon from '@mui/icons-material/People';
 
+// Mui Imports
+import { Avatar, Box, Typography } from '@mui/material';
+
 // Custom Component
 import { useAuth } from '../../context/AuthContext';
-
-// CSS
-import "./SidebarHeader.css"
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Avatar, Box, Typography } from '@mui/material';
-import { Image } from '@mui/icons-material';
 
 const Sidebar = () => {
 
@@ -36,9 +31,9 @@ const Sidebar = () => {
     },
     {
       slug: "role",
-      name: "Role User",
+      name: "Roles & Permissions",
       icon: <PeopleIcon />,
-      navigate: "/role"
+      navigate: "/role-user"
     },
     {
       slug: "setting",
@@ -49,7 +44,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div style={{ width: "240px" }}>
+    <div style={{ minWidth: "240px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "75px" }}>
         <span className="logo" style={{ fontSize: "22px", fontWeight: "600", transition: "opacity 0.3s ease", width: "100%", textAlign: "center" }}>
           BOSS MAKER

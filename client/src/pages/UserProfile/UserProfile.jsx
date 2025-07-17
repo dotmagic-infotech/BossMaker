@@ -1,13 +1,17 @@
 // React Imports
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // Mui Imports
-import { TextField, IconButton, Grid, InputAdornment, Box, Avatar, Divider, Typography } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { TextField, Grid, Box, Avatar, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+// Third Party imports
 import dayjs from 'dayjs';
+
+// Custom Component
+import PasswordField from '../../components/PasswordField/PasswordField';
 
 function UserProfile() {
   const [formData, setFormData] = useState({
@@ -114,23 +118,12 @@ function UserProfile() {
                 onChange={(e) => handleChange("role", e.target.value)}
               />
             </Box>
-            <TextField
+            <PasswordField
               label="Password"
-              type={showPassword ? 'text' : 'password'}
               value={formData.password}
               onChange={(e) => handleChange("password", e.target.value)}
-              fullWidth
               disabled
-              variant="outlined"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={handleToggleVisibility} edge="end">
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
+              fullWidth
             />
           </Box>
         </Grid>

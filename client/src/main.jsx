@@ -5,13 +5,16 @@ import './index.css'
 import App from './App.jsx'
 
 import { AuthProvider } from './context/AuthContext.jsx';
+import { ToastProvider } from './components/ToastProvider/ToastProvider.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <ToastProvider>
+        <App />
+      </ToastProvider>
     </AuthProvider>
   </React.StrictMode>
 );

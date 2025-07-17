@@ -1,11 +1,17 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+// React Imports
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Css
+import './App.css'
+
+// Custom Component
 import MainLayout from './components/layouts/MainLayout';
 import ProtectedRoutes from './routes/ProtectedRoutes';
-import Dashboard from './pages/Dashboard';
 import AccessDenied from './pages/AccessDenied';
-import './App.css'
-import UserProfile from './pages/UserProfile/UserProfile';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import UserProfile from './pages/UserProfile/UserProfile';
+import RoleUSer from './pages/RoleUser/RoleUser';
 
 function App() {
 
@@ -26,6 +32,7 @@ function App() {
           </Route>
 
           <Route path='/profile' element={<UserProfile />} />
+          <Route path='/role-user' element={<RoleUSer />} />
 
 
           {/* AccessDenied */}

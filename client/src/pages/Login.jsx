@@ -1,8 +1,10 @@
-// src/pages/Login.js
+// React Imports
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    // State
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -10,7 +12,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        
+
         if (email === 'admin@example.com' && password === 'password123') {
             localStorage.setItem('token', 'sample-token');
             navigate('/dashboard');

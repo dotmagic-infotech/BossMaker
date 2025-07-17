@@ -1,4 +1,7 @@
-import { Card, Grid, Typography } from "@mui/material";
+// Mui Imports
+import { Box, Card, Grid, Typography } from "@mui/material";
+
+// Mui Icons
 import SchoolIcon from '@mui/icons-material/School';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
@@ -6,7 +9,7 @@ import AddReactionIcon from '@mui/icons-material/AddReaction';
 
 const Dashboard = () => {
     return (
-        <div style={{ padding: "1.25rem" }}>
+        <Box style={{ padding: "1.25rem" }}>
             <Grid container spacing={2}>
                 <Grid size={3}>
                     <Card sx={{ padding: "12px" }}>
@@ -39,7 +42,7 @@ const Dashboard = () => {
             </Grid>
             <h1>Welcome to Dashboard.</h1>
             <p>This is your module content.</p>
-        </div>
+        </Box>
     );
 };
 

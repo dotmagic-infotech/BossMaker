@@ -1,8 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAuth } from "../../context/AuthContext";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
+
+// Mui Imports
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
+
+// Custom Component
+import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
     const { role } = useAuth();
