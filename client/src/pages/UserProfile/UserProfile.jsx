@@ -54,7 +54,7 @@ function UserProfile() {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={12} sm={8} md={6} lg={4}>
+        <Grid xs={12} md={6} lg={4}>
           <Box
             component="section"
             display="flex"

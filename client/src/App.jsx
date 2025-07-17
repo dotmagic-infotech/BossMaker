@@ -5,13 +5,14 @@ import Dashboard from './pages/Dashboard';
 import AccessDenied from './pages/AccessDenied';
 import './App.css'
 import UserProfile from './pages/UserProfile/UserProfile';
+import Login from './pages/Login';
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/" element={<Login />} />
 
         <Route path='/' element={<MainLayout />}>
           <Route element={<ProtectedRoutes allowedRoles={['super_admin']} />}>
@@ -23,10 +24,10 @@ function App() {
           <Route element={<ProtectedRoutes allowedRoles={['course_participant']} />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
-          
-          <Route path='/profile' element={<UserProfile />}/>
 
-      
+          <Route path='/profile' element={<UserProfile />} />
+
+
           {/* AccessDenied */}
           <Route path="*" element={<AccessDenied />} />
         </Route>

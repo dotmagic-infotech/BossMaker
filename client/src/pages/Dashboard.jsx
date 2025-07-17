@@ -2,6 +2,7 @@ import { Card, Grid, Typography } from "@mui/material";
 import SchoolIcon from '@mui/icons-material/School';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import AddReactionIcon from '@mui/icons-material/AddReaction';
 
 const Dashboard = () => {
     return (
@@ -30,6 +31,7 @@ const Dashboard = () => {
                 </Grid>
                 <Grid size={3}>
                     <Card sx={{ padding: "12px" }}>
+                        <AddReactionIcon sx={{ fontSize: 40 }} />
                         <Typography fontSize={20} fontWeight={600}>25</Typography>
                         <Typography>Student (optional)</Typography>
                     </Card>
