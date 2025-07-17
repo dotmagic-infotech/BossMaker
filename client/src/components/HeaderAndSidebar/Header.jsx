@@ -12,14 +12,15 @@ const Header = () => {
         <header
             style={{
                 backgroundColor: 'transparent',
-                padding: '1rem 20px',
                 display: 'flex',
+                paddingLeft: "10px",
+                paddingBottom: "10px",
                 alignItems: 'center',
                 justifyContent: 'space-between'
             }}
         >
             <div>
-                <Typography sx={{ fontSize: '21px', fontWeight: 500 }}>
+                <Typography sx={{ fontSize: '21px', fontWeight: 600 }}>
                     Welcome {role}
                 </Typography>
                 <Typography>Here’s what’s happening with your store today.</Typography>
@@ -27,7 +28,7 @@ const Header = () => {
             <div
                 style={{
                     backgroundColor: 'white',
-                    padding: '6px',
+                    padding: '12px',
                     borderRadius: '50%',
                     cursor: 'pointer',
                 }}

@@ -10,8 +10,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
-        // Dummy auth logic (replace with real API later)
+        
         if (email === 'admin@example.com' && password === 'password123') {
             localStorage.setItem('token', 'sample-token');
             navigate('/dashboard');

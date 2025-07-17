@@ -6,7 +6,7 @@ import AddReactionIcon from '@mui/icons-material/AddReaction';
 
 const Dashboard = () => {
     return (
-        <div style={{ padding: "10px" }}>
+        <div style={{ padding: "1.25rem" }}>
             <Grid container spacing={2}>
                 <Grid size={3}>
                     <Card sx={{ padding: "12px" }}>

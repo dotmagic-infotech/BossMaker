@@ -13,65 +13,70 @@ import { useAuth } from '../../context/AuthContext';
 
 // CSS
 import "./SidebarHeader.css"
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Avatar, Box, Typography } from '@mui/material';
+import { Image } from '@mui/icons-material';
 
 const Sidebar = () => {
 
   // Hooks
   const { role } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // State
-  const [collapsed, setCollapsed] = useState(false);
+
+
+  const SIDEBARLIST = [
+    {
+      slug: "dashboard",
+      name: "Dashboard",
+      icon: <GridViewIcon />,
+      navigate: "/dashboard"
+    },
+    {
+      slug: "role",
+      name: "Role User",
+      icon: <PeopleIcon />,
+      navigate: "/role"
+    },
+    {
+      slug: "setting",
+      name: "Settings",
+      icon: <PeopleIcon />,
+      navigate: "/setting"
+    },
+  ]
 
   return (
-    <div>
-      <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0.5rem" }}>
-          <span className="logo" style={{ fontSize: "18px", fontWeight: "500", transition: "opacity 0.3s ease", width: "100%", textAlign: "center" }}>
-            BOSS MAKER
-          </span>
-          <button className='sidebar-switch'
-            onClick={() => setCollapsed(!collapsed)}
-          >
-            <FontAwesomeIcon icon={collapsed ? faCircleRight : faCircleLeft} style={{ margin: '0px 0.3rem' }} />
-          </button>
-        </div>
-        <ul className="menu">
-          {role === 'super_admin' && (
-            <>
-              <li onClick={() => navigate("/dashboard")}>
-                <GridViewIcon />
-                <span className="text">DashBoard</span>
-              </li>
-              <li onClick={() => navigate("/role")}>
-                <PeopleIcon />
-                <span className="text">Role</span>
-              </li>
-              <li onClick={() => navigate("/dashboard")}>
-                <FontAwesomeIcon icon={faUser} style={{ margin: '0px 0.3rem' }} />
-                <span className="text">Table of Content</span>
-              </li>
-            </>
-          )}
-          {role === 'bossmaker_member' && (
-            <>
-              <li>
-                <FontAwesomeIcon icon={faHome} style={{ margin: '0px 0.3rem' }} />
-                <span className="text">Home</span>
-              </li>
-              <li>
-                <FontAwesomeIcon icon={faAddressCard} style={{ margin: '0px 0.3rem' }} />
-                <span className="text">About</span>
-              </li>
-            </>
-          )}
-          <li>
-            <FontAwesomeIcon icon={faGear} style={{ margin: '0px 0.3rem' }} />
-            <span className="text">Settings</span>
-          </li>
-        </ul>
-      </aside>
+    <div style={{ width: "240px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "75px" }}>
+        <span className="logo" style={{ fontSize: "22px", fontWeight: "600", transition: "opacity 0.3s ease", width: "100%", textAlign: "center" }}>
+          BOSS MAKER
+        </span>
+      </div>
+      <div style={{ padding: "4px", display: "flex", flexDirection: "column", gap: "2px", height: "calc(100% - 9.3rem)" }}>
+        {SIDEBARLIST.map((v, i) => {
+          const isActive = location.pathname === v.navigate;
+          return (
+            <li
+              key={i}
+              className={isActive ? 'sidebar-list-select' : 'sidebar-list'}
+              onClick={() => navigate(v.navigate)}
+            >
+              {v.icon}
+              <Typography fontWeight={500}>{v.name}</Typography>
+            </li>
+          );
+        })}
+      </div>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "10px", padding: "4px" }}>
+        <Avatar alt="user" src="https://cdn.menuonline.com/preview/mycircle-files-1/mycircle-test/225/o3vIBbfmHHf3GsV.JPEG" sx={{ width: "55px", height: "55px" }} />
+        <Box>
+          <Typography style={{ fontSize: "12px" }}>Good Day</Typography>
+          <Typography sx={{ fontWeight: "600" }}>Virat Kohli</Typography>
+        </Box>
+      </Box>
     </div>
   );
 };

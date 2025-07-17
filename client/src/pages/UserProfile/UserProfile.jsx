@@ -46,9 +46,8 @@ function UserProfile() {
   };
 
   return (
-    <div style={{ height: "100%", overflow: "hidden" }}>
-      <Typography variant="h6" textAlign="center" fontWeight={500} sx={{ margin: "10px 0px" }}>My Profile</Typography>
-      <Divider />
+    <div style={{ padding: "1.25rem" }}>
+      <Typography variant='subtitle1' fontSize="1.5rem" fontWeight={500}>My Profile</Typography>
       <Grid
         container
         justifyContent="center"

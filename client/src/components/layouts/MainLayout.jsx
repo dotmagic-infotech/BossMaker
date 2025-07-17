@@ -7,13 +7,12 @@ import Card from "@mui/material/Card";
 
 const MainLayout = ({ children }) => {
     return (
-        <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: "#f5f5f5" }}>
+        <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: "rgb(229, 229, 229)" }}>
             <Sidebar />
 
-            <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: "10px" }}>
                 <Header />
-                <Divider />
-                <Card sx={{ flexGrow: 1, overflow: 'auto', borderRadius: '8px', margin: '1rem' }}>
+                <Card sx={{ flexGrow: 1, overflow: 'auto', borderRadius: '1.25rem', boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.125rem 0.25rem 0.0625rem" }}>
                     <Outlet />
                 </Card>
             </div>
