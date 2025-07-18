@@ -45,7 +45,7 @@ const SignUp = () => {
     });
 
     const handleSubmit = (values) => {
-        
+
         console.log('Submitted values:', values);
         navigate("/dashboard")
     };

@@ -14,6 +14,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import RoleUSer from './pages/RoleUser/RoleUser';
 import Category from './pages/Category/Category';
 import SignUp from './pages/Login/SignUp';
+import AddRoleUser from './pages/RoleUser/AddRoleUser';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/profile' element={<UserProfile />} />
           <Route path='/category' element={<Category />} />
           <Route path='/role-user' element={<RoleUSer />} />
+          <Route path='/add-role' element={<AddRoleUser />} />
 
 
           {/* AccessDenied */}

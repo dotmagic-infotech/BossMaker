@@ -12,7 +12,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 // Custom Component
 import { useToast } from '../../components/ToastProvider/ToastProvider';
-import PasswordField from '../../components/PasswordField/PasswordField';
+import DeleteModal from '../../components/DeleteModal/DeleteModal';
 
 export default function Category() {
 
@@ -20,11 +20,33 @@ export default function Category() {
     const { showToast } = useToast();
 
     // State
-    const [changePassword, setChangePassword] = useState("")
-    const [newPassword, setNewPassword] = useState("")
+    const [openCategory, setOpenCategory] = useState(false)
+    const [category, setCategory] = useState("")
+    const [editCategoryId, setEditCategoryId] = useState(null);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
     const handleClose = () => {
-        setChangePassword(null);
+        setOpenCategory(false);
+        setDeleteModalOpen(false)
+        setEditCategoryId(null);
+        setCategory("");
+    };
+
+    const handleEditCategory = (row) => {
+        setEditCategoryId(row.id);
+        setCategory(row.category);
+        setOpenCategory(true);
+    };
+
+    const handleDeleteCategory = (row) => {
+        setCategory(row.category);
+        setEditCategoryId(row.id);
+        setDeleteModalOpen(true)
+    };
+
+    const handleConfirmDelete = () => {
+        setDeleteModalOpen(false);
+        showToast("Deleted successfully", "success");
     };
 
     const columns = [
@@ -57,10 +79,10 @@ export default function Category() {
             align: 'start',
             renderCell: (params) => (
                 <Box direction="row" spacing={1}>
-                    <IconButton onClick={() => console.log('Edit', params.row)}>
+                    <IconButton onClick={() => handleEditCategory(params.row)}>
                         <CreateOutlinedIcon fontSize="medium" />
                     </IconButton>
-                    <IconButton onClick={() => console.log('Delete', params.row)}>
+                    <IconButton onClick={() => handleDeleteCategory(params.row)}>
                         <DeleteOutlineOutlinedIcon fontSize="medium" />
                     </IconButton>
                 </Box>
@@ -76,6 +98,31 @@ export default function Category() {
         { id: 3, category: 'Photography' },
         { id: 3, category: 'Personal Development' },
     ];
+
+    const handleAddCategory = () => {
+        if (category.trim() === "") {
+            showToast('Please enter a category name.', 'error');
+            return;
+        }
+
+        try {
+            if (editCategoryId) {
+                const payload = { id: editCategoryId, category };
+                console.log("Updating category:", payload);
+                // await updateCategoryApi(payload);
+                showToast("Category updated successfully!", "success");
+            } else {
+                const payload = { category };
+                console.log("Adding new category:", payload);
+                // await addCategoryApi(payload);
+                showToast("Category added successfully!", "success");
+            }
+
+            handleClose();
+        } catch (error) {
+            showToast("Something went wrong.", "error");
+        }
+    };
 
     return (
         <Box style={{ padding: "1.25rem", height: "100%" }}>
@@ -96,7 +143,7 @@ export default function Category() {
                             ),
                         }}
                     />
-                    <Button sx={{ bgcolor: "black", color: "white", fontWeight: '500' }} variant="outlined" startIcon={<AddOutlinedIcon />}>
+                    <Button sx={{ bgcolor: "black", color: "white", fontWeight: '500' }} variant="outlined" startIcon={<AddOutlinedIcon />} onClick={() => setOpenCategory(true)}>
                         Add Categoty
                     </Button>
                 </div>
@@ -134,7 +181,7 @@ export default function Category() {
             </Box>
 
             <Modal
-                open={changePassword}
+                open={openCategory}
                 onClose={handleClose}
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
@@ -153,31 +200,44 @@ export default function Category() {
                     }}
                 >
                     <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center", mb: 1, }}>
-                        <Typography variant='h5' fontWeight="medium">Change Password</Typography>
+                        <Typography variant='h5' fontWeight="medium">{editCategoryId ? "Update" : "Add"} Category</Typography>
                         <div style={{ backgroundColor: "black", color: "white", padding: "5px", borderRadius: "50%", display: "flex", cursor: "pointer" }} onClick={() => handleClose()}>
                             <CloseOutlinedIcon fontSize="medium" fontWeight={600} />
                         </div>
                     </Box>
                     <Divider sx={{ margin: "10px -16px 20px -16px" }} />
-                    <PasswordField
-                        placeholder="New Password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    />
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                        <Button variant="contained"
-                            sx={{
-                                mt: 2, backgroundColor: 'black', color: 'white',
-                                '&:hover': {
-                                    backgroundColor: '#333',
-                                },
-                            }}
-                        >
-                            Submit
+                    <Box>
+                        <Typography sx={{ mx: 0.5, mb: 0.4 }}>Category Name</Typography>
+                        <TextField
+                            fullWidth
+                            id="category"
+                            type='text'
+                            placeholder="Category Name"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        />
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "end", gap: "10px", width: "100%", mt: 2 }}>
+                        <Button variant="contained" color="primary" sx={{ backgroundColor: "black", width: "100px", borderRadius: "10px", padding: "10px", fontWeight: "500", fontSize: "18px" }}
+                            onClick={handleAddCategory}>
+                            {editCategoryId ? "Update" : "Save"}
                         </Button>
-                    </div>
+                        <Button variant="contained" color="" sx={{ backgroundColor: "white", width: "100px", borderRadius: "10px", padding: "10px", fontWeight: "500", fontSize: "18px" }}
+                            onClick={() => handleClose()}>
+                            Cancel
+                        </Button>
+                    </Box>
                 </Card>
             </Modal>
+
+            {/* Delete Modal */}
+            <DeleteModal
+                open={deleteModalOpen}
+                title={category}
+                description={`This category will be deleted permanently.`}
+                onClose={handleClose}
+                onDelete={handleConfirmDelete}
+            />
         </Box>
     );
 }

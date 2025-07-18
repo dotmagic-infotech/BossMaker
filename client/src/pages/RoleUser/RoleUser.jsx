@@ -1,5 +1,6 @@
 // React Imports
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Mui Imports
 import { DataGrid } from '@mui/x-data-grid';
@@ -10,6 +11,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 // Custom Component
 import { useToast } from '../../components/ToastProvider/ToastProvider';
@@ -19,6 +21,7 @@ export default function RoleUser() {
 
     // Hooks
     const { showToast } = useToast();
+    const navigate = useNavigate();
 
     // State
     const [changePassword, setChangePassword] = useState("")
@@ -108,20 +111,25 @@ export default function RoleUser() {
         <Box style={{ padding: "1.25rem", height: "100%" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant='subtitle1' fontSize="1.5rem" fontWeight={500}>Roles & Permissions</Typography>
-                <TextField
-                    size="small"
-                    placeholder="Search user..."
-                    variant="outlined"
-                    // value={searchTerm}
-                    // onChange={(e) => setSearchTerm(e.target.value)}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <SearchIcon />
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <TextField
+                        size="small"
+                        placeholder="Search user..."
+                        variant="outlined"
+                        // value={searchTerm}
+                        // onChange={(e) => setSearchTerm(e.target.value)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <Button sx={{ bgcolor: "black", color: "white", fontWeight: '500' }} variant="outlined" startIcon={<AddOutlinedIcon />} onClick={() => navigate("/add-role")}>
+                        Add User
+                    </Button>
+                </div>
             </div>
             <Box sx={{ marginTop: "10px", height: "100%" }}>
                 <DataGrid
@@ -200,6 +208,6 @@ export default function RoleUser() {
                     </div>
                 </Card>
             </Modal>
-        </Box>
+        </Box >
     );
 }
