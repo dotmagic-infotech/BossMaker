@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Icons
 import GridViewIcon from '@mui/icons-material/GridView';
 import PeopleIcon from '@mui/icons-material/People';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 
 // Mui Imports
 import { Avatar, Box, Typography } from '@mui/material';
@@ -30,6 +32,12 @@ const Sidebar = () => {
       navigate: "/dashboard"
     },
     {
+      slug: "category",
+      name: "Category",
+      icon: <CategoryOutlinedIcon />,
+      navigate: "/category"
+    },
+    {
       slug: "role",
       name: "Roles & Permissions",
       icon: <PeopleIcon />,
@@ -38,7 +46,7 @@ const Sidebar = () => {
     {
       slug: "setting",
       name: "Settings",
-      icon: <PeopleIcon />,
+      icon: <SettingsOutlinedIcon />,
       navigate: "/setting"
     },
   ]
@@ -69,7 +77,7 @@ const Sidebar = () => {
         <Avatar alt="user" src="https://cdn.menuonline.com/preview/mycircle-files-1/mycircle-test/225/o3vIBbfmHHf3GsV.JPEG" sx={{ width: "55px", height: "55px" }} />
         <Box>
           <Typography style={{ fontSize: "12px" }}>Good Day</Typography>
-          <Typography sx={{ fontWeight: "600" }}>Virat Kohli</Typography>
+          <Typography sx={{ fontWeight: "600" }}>Harvey Roxie</Typography>
         </Box>
       </Box>
     </div>

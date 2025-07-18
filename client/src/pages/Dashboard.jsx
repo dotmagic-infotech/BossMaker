@@ -2,46 +2,36 @@
 import { Box, Card, Grid, Typography } from "@mui/material";
 
 // Mui Icons
-import SchoolIcon from '@mui/icons-material/School';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
-import AddReactionIcon from '@mui/icons-material/AddReaction';
 
 const Dashboard = () => {
+
+    const counts = [
+        { label: 'Courses', value: 130 },
+        { label: 'Instructors', value: 55 },
+        { label: 'Participants', value: 60 },
+    ];
+
     return (
-        <Box style={{ padding: "1.25rem" }}>
+        <Box style={{ padding: "1.25rem" }} >
             <Grid container spacing={2}>
-                <Grid size={3}>
-                    <Card sx={{ padding: "12px" }}>
-                        <SchoolIcon sx={{ fontSize: 40 }} />
-                        <Typography fontSize={20} fontWeight={600}>130</Typography>
-                        <Typography>Courses</Typography>
-                    </Card>
-                </Grid>
-                <Grid size={3}>
-                    <Card sx={{ padding: "12px" }}>
-                        <GroupAddIcon sx={{ fontSize: 40 }} />
-                        <Typography fontSize={20} fontWeight={600}>55</Typography>
-                        <Typography>Instructors</Typography>
-                    </Card>
-                </Grid>
-                <Grid size={3}>
-                    <Card sx={{ padding: "12px" }}>
-                        <EmojiPeopleIcon sx={{ fontSize: 40 }} />
-                        <Typography fontSize={20} fontWeight={600}>60</Typography>
-                        <Typography>Participants</Typography>
-                    </Card>
-                </Grid>
-                <Grid size={3}>
-                    <Card sx={{ padding: "12px" }}>
-                        <AddReactionIcon sx={{ fontSize: 40 }} />
-                        <Typography fontSize={20} fontWeight={600}>25</Typography>
-                        <Typography>Student (optional)</Typography>
-                    </Card>
-                </Grid>
+                {counts.map((stat, index) => (
+                    <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+                        <Card
+                            sx={{
+                                bgcolor: "rgb(245, 245, 245)",
+                                padding: "2rem",
+                                borderRadius: "1rem",
+                                boxShadow: "rgba(0, 0, 0, 0.35) 0rem 0.125rem 0.3125rem",
+                                border: "0.0625rem solid rgb(170, 170, 170)",
+                            }}
+                        >
+                            <Typography fontWeight={600} textAlign="center">{stat.label}</Typography>
+                            <Typography fontWeight={600} textAlign="center">{stat.value}</Typography>
+                        </Card>
+                    </Grid>
+                ))}
             </Grid>
             <h1>Welcome to Dashboard.</h1>
-            <p>This is your module content.</p>
         </Box>
     );
 };

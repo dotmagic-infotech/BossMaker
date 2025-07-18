@@ -23,11 +23,6 @@ function UserProfile() {
     role: '',
     password: '',
   });
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleToggleVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
 
   useEffect(() => {
     const savedData = {

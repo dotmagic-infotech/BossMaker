@@ -7,15 +7,14 @@ import { Button, Card, Divider, IconButton, Modal, Switch, Typography, Box, Inpu
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 // Custom Component
 import { useToast } from '../../components/ToastProvider/ToastProvider';
 import PasswordField from '../../components/PasswordField/PasswordField';
 
-export default function RoleUser() {
+export default function Category() {
 
     // Hooks
     const { showToast } = useToast();
@@ -30,36 +29,19 @@ export default function RoleUser() {
 
     const columns = [
         {
-            field: 'username',
-            headerName: 'USER NAME',
+            field: 'category',
+            headerName: 'Category',
             minWidth: 150,
-            flex: 0.5,
-            headerAlign: 'start',
-            align: 'start',
-            valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-        },
-        {
-            field: 'email',
-            headerName: 'EMAIL',
-            minWidth: 150,
-            flex: 0.5,
-            headerAlign: 'start',
-            align: 'start',
-        },
-        {
-            field: 'mobile',
-            headerName: 'MOBILE NUMBER',
-            minWidth: 110,
             flex: 0.5,
             headerAlign: 'start',
             align: 'start',
         },
         {
             field: 'status',
-            headerName: 'STATUS',
-            minWidth: 150,
+            headerName: 'CATEGORY STATUS',
             headerAlign: 'start',
             align: 'start',
+            flex: 0.5,
             renderCell: (params) => (
                 <Box>
                     <Switch color="success" onClick={() => console.log('status', params.row)} />
@@ -71,18 +53,12 @@ export default function RoleUser() {
             headerName: 'ACTIONS',
             minWidth: 150,
             flex: 0.5,
-            headerAlign: 'center',
-            align: 'center',
+            headerAlign: 'start',
+            align: 'start',
             renderCell: (params) => (
                 <Box direction="row" spacing={1}>
                     <IconButton onClick={() => console.log('Edit', params.row)}>
                         <CreateOutlinedIcon fontSize="medium" />
-                    </IconButton>
-                    <IconButton onClick={() => showToast('Success! Something happened.', 'success')}>
-                        <LockOpenOutlinedIcon fontSize="medium" />
-                    </IconButton>
-                    <IconButton onClick={() => setChangePassword(params.row.id)}>
-                        <PasswordOutlinedIcon fontSize="medium" />
                     </IconButton>
                     <IconButton onClick={() => console.log('Delete', params.row)}>
                         <DeleteOutlineOutlinedIcon fontSize="medium" />
@@ -93,35 +69,37 @@ export default function RoleUser() {
     ];
 
     const rows = [
-        { id: 1, lastName: 'Snow', email: 'test@gmail.com', firstName: 'Jon', mobile: 9876543215 },
-        { id: 2, lastName: 'Lannister', email: 'test@gmail.com', firstName: 'Cersei', mobile: 7894561235 },
-        { id: 3, lastName: 'Lannister', email: 'test@gmail.com', firstName: 'Jaime', mobile: 1593572846 },
-        { id: 4, lastName: 'Stark', email: 'test@gmail.com', firstName: 'Arya', mobile: 465781235 },
-        { id: 5, lastName: 'Targaryen', email: 'test@gmail.com', firstName: 'Daenerys', mobile: 4657981326 },
-        { id: 6, lastName: 'Melisandre', email: 'test@gmail.com', firstName: 'raj', mobile: 1237894659 },
-        { id: 7, lastName: 'Clifford', email: 'test@gmail.com', firstName: 'Ferrara', mobile: 3216549875 },
-        { id: 8, lastName: 'Frances', email: 'test@gmail.com', firstName: 'Rossini', mobile: 6549871237 },
-        { id: 9, lastName: 'Roxie', email: 'test@gmail.com', firstName: 'Harvey', mobile: 7891234651 },
+        { id: 1, category: 'Development' },
+        { id: 2, category: 'Design' },
+        { id: 3, category: 'Marketing' },
+        { id: 3, category: 'Business' },
+        { id: 3, category: 'Photography' },
+        { id: 3, category: 'Personal Development' },
     ];
 
     return (
         <Box style={{ padding: "1.25rem", height: "100%" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <Typography variant='subtitle1' fontSize="1.5rem" fontWeight={500}>Roles & Permissions</Typography>
-                <TextField
-                    size="small"
-                    placeholder="Search user..."
-                    variant="outlined"
-                    // value={searchTerm}
-                    // onChange={(e) => setSearchTerm(e.target.value)}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <SearchIcon />
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+                <Typography variant='subtitle1' fontSize="1.5rem" fontWeight={500}>Category</Typography>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <TextField
+                        size="small"
+                        placeholder="Search category..."
+                        variant="outlined"
+                        // value={searchTerm}
+                        // onChange={(e) => setSearchTerm(e.target.value)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <Button sx={{ bgcolor: "black", color: "white", fontWeight: '500' }} variant="outlined" startIcon={<AddOutlinedIcon />}>
+                        Add Categoty
+                    </Button>
+                </div>
             </div>
             <Box sx={{ marginTop: "10px", height: "100%" }}>
                 <DataGrid

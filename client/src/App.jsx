@@ -8,17 +8,20 @@ import './App.css'
 import MainLayout from './components/layouts/MainLayout';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import AccessDenied from './pages/AccessDenied';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard';
 import UserProfile from './pages/UserProfile/UserProfile';
 import RoleUSer from './pages/RoleUser/RoleUser';
+import Category from './pages/Category/Category';
+import SignUp from './pages/Login/SignUp';
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
 
         <Route path='/' element={<MainLayout />}>
           <Route element={<ProtectedRoutes allowedRoles={['super_admin']} />}>
@@ -32,6 +35,7 @@ function App() {
           </Route>
 
           <Route path='/profile' element={<UserProfile />} />
+          <Route path='/category' element={<Category />} />
           <Route path='/role-user' element={<RoleUSer />} />
 
 
