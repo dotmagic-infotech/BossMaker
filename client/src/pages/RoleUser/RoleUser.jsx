@@ -16,6 +16,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 // Custom Component
 import { useToast } from '../../components/ToastProvider/ToastProvider';
 import PasswordField from '../../components/PasswordField/PasswordField';
+import DeleteModal from '../../components/DeleteModal/DeleteModal';
 
 export default function RoleUser() {
 
@@ -24,45 +25,38 @@ export default function RoleUser() {
     const navigate = useNavigate();
 
     // State
+    const [userId, setUserId] = useState(null);
+    const [roleUSerName, setRoleUSerName] = useState("")
     const [changePassword, setChangePassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
     const handleClose = () => {
         setChangePassword(null);
+        setDeleteModalOpen(false);
+    };
+
+    const handleDeleteRole = (row) => {
+        setRoleUSerName(`${row.firstName || ''} ${row.lastName || ''}`);
+        setUserId(row.id);
+        setDeleteModalOpen(true)
+    };
+
+    const handleConfirmDelete = () => {
+        setDeleteModalOpen(false);
+        console.log("Delelte User :::", userId);
+        showToast("Deleted successfully", "success");
     };
 
     const columns = [
         {
-            field: 'username',
-            headerName: 'USER NAME',
-            minWidth: 150,
-            flex: 0.5,
-            headerAlign: 'start',
-            align: 'start',
+            field: 'username', headerName: 'USER NAME', minWidth: 150, flex: 0.5, headerAlign: 'start', align: 'start',
             valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
         },
+        { field: 'email', headerName: 'EMAIL', minWidth: 150, flex: 0.5, headerAlign: 'start', align: 'start' },
+        { field: 'mobile', headerName: 'MOBILE NUMBER', minWidth: 110, flex: 0.5, headerAlign: 'start', align: 'start' },
         {
-            field: 'email',
-            headerName: 'EMAIL',
-            minWidth: 150,
-            flex: 0.5,
-            headerAlign: 'start',
-            align: 'start',
-        },
-        {
-            field: 'mobile',
-            headerName: 'MOBILE NUMBER',
-            minWidth: 110,
-            flex: 0.5,
-            headerAlign: 'start',
-            align: 'start',
-        },
-        {
-            field: 'status',
-            headerName: 'STATUS',
-            minWidth: 150,
-            headerAlign: 'start',
-            align: 'start',
+            field: 'status', headerName: 'STATUS', minWidth: 150, headerAlign: 'start', align: 'start',
             renderCell: (params) => (
                 <Box>
                     <Switch color="success" onClick={() => console.log('status', params.row)} />
@@ -70,12 +64,7 @@ export default function RoleUser() {
             )
         },
         {
-            field: 'Action',
-            headerName: 'ACTIONS',
-            minWidth: 150,
-            flex: 0.5,
-            headerAlign: 'center',
-            align: 'center',
+            field: 'Action', headerName: 'ACTIONS', minWidth: 150, flex: 0.5, headerAlign: 'center', align: 'center',
             renderCell: (params) => (
                 <Box direction="row" spacing={1}>
                     <IconButton onClick={() => console.log('Edit', params.row)}>
@@ -87,7 +76,7 @@ export default function RoleUser() {
                     <IconButton onClick={() => setChangePassword(params.row.id)}>
                         <PasswordOutlinedIcon fontSize="medium" />
                     </IconButton>
-                    <IconButton onClick={() => console.log('Delete', params.row)}>
+                    <IconButton onClick={() => handleDeleteRole(params.row)}>
                         <DeleteOutlineOutlinedIcon fontSize="medium" />
                     </IconButton>
                 </Box>
@@ -208,6 +197,16 @@ export default function RoleUser() {
                     </div>
                 </Card>
             </Modal>
-        </Box >
+
+
+            {/* Delete Modal */}
+            <DeleteModal
+                open={deleteModalOpen}
+                title={roleUSerName}
+                description={`This user will be deleted permanently.`}
+                onClose={handleClose}
+                onDelete={handleConfirmDelete}
+            />
+        </Box>
     );
 }

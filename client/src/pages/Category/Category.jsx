@@ -46,6 +46,8 @@ export default function Category() {
 
     const handleConfirmDelete = () => {
         setDeleteModalOpen(false);
+
+        console.log("Delelte Category :::", editCategoryId)
         showToast("Deleted successfully", "success");
     };
 
